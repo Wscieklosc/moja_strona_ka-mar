@@ -1,49 +1,121 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KA-MAR Katarzyna Adamczyk-Dziuk</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #111;
-            color: #fff;
-            text-align: center;
-            padding: 50px;
-        }
-        h1 {
-            font-size: 2.5em;
-            color: #ff4444;
-        }
-        p {
-            font-size: 1.2em;
-            margin: 10px 0;
-        }
-        a {
-            color: #ffcc00;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .contact-box {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 10px;
-            display: inline-block;
-            margin-top: 20px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KA-MAR | O firmie</title>
+  <style>
+    body {font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5; color: #333;}
+    header {background: #222; color: #fff; padding: 1em; text-align: center; position: relative;}
+    header h1 {margin: 0; font-size: 1.8em;}
+    nav {margin-top: 0.5em;}
+    nav button {margin: 0 0.2em; padding: 0.4em 0.8em; cursor: pointer; border: none; border-radius: 4px; background: #444; color: #fff;}
+    nav button:hover {background: #666;}
+    main {padding: 2em; max-width: 1000px; margin: auto;}
+    section {margin-bottom: 2em;}
+    .tiles {display: flex; gap: 1em; flex-wrap: wrap; justify-content: center;}
+    .tile {background: white; padding: 1.5em; flex: 1 1 250px; text-align: center; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); cursor: pointer; transition: transform 0.2s;}
+    .tile:hover {transform: translateY(-5px);}
+    footer {background: #222; color: #fff; text-align: center; padding: 1em;}
+  </style>
 </head>
 <body>
-    <h1>KA-MAR</h1>
-    <h2>Katarzyna Adamczyk-Dziuk</h2>
-    <div class="contact-box">
-        <p><strong>Telefon:</strong> <a href="tel:+48798302814">+48 798 302 814</a></p>
-        <p><strong>Email:</strong> <a href="mailto:biuro@ka-mar.com.pl">biuro@ka-mar.com.pl</a></p>
-    </div>
-<p style="margin-top: 30px; font-size: 1.5em; color: #ffcc00;">Strona w budowie</p>
+  <header>
+    <h1 id="title">KA-MAR | O firmie</h1>
+    <nav>
+      <button onclick="setLang('pl')">🇵🇱 PL</button>
+      <button onclick="setLang('de')">🇩🇪 DE</button>
+      <button onclick="setLang('en')">🇬🇧 EN</button>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <h2 id="about-title"></h2>
+      <p id="about-text"></p>
+    </section>
+    <section class="tiles">
+      <div class="tile" onclick="scrollToSection('services')" id="tile-services"></div>
+      <div class="tile" onclick="scrollToSection('gallery')" id="tile-gallery"></div>
+      <div class="tile" onclick="scrollToSection('contact')" id="tile-contact"></div>
+    </section>
+    <section id="services">
+      <h2 id="services-title"></h2>
+      <p id="services-text"></p>
+    </section>
+    <section id="gallery">
+      <h2 id="gallery-title"></h2>
+      <p id="gallery-text"></p>
+    </section>
+    <section id="contact">
+      <h2 id="contact-title"></h2>
+      <p id="contact-text"></p>
+    </section>
+  </main>
+  <footer>
+    <p>© 2025 KA-MAR. All rights reserved.</p>
+  </footer>
+  <script>
+    const content = {
+      pl: {
+        aboutTitle: "O firmie",
+        aboutText: "Firma KA-MAR specjalizuje się w montażu, remoncie i konserwacji kotłów przemysłowych, linii transportowych oraz instalacji w elektrowniach i spalarniach śmieci. Realizujemy projekty na terenie Polski i całej Unii Europejskiej.",
+        tileServices: "Zakres usług",
+        tileGallery: "Galeria",
+        tileContact: "Kontakt z nami",
+        servicesTitle: "Zakres usług",
+        servicesText: "Oferujemy kompleksowe usługi obejmujące przeglądy, modernizacje oraz naprawy instalacji przemysłowych, w tym wymiany ślizgów i łańcuchów w taśmociągach.",
+        galleryTitle: "Galeria",
+        galleryText: "Zobacz wybrane realizacje naszych projektów przemysłowych.",
+        contactTitle: "Kontakt",
+        contactText: "KA-MAR Katarzyna Adamczyk-Dziuk, ul. Lisieckiego 1, 41-506 Chorzów, Polska | Tel: +48 000 000 000 | Email: biuro@ka-mar.com.pl"
+      },
+      de: {
+        aboutTitle: "Über uns",
+        aboutText: "Die Firma KA-MAR ist spezialisiert auf Montage, Reparatur und Wartung von Industriekesseln, Förderanlagen und Installationen in Kraftwerken und Müllverbrennungsanlagen. Wir führen Projekte in Polen und in der gesamten Europäischen Union durch.",
+        tileServices: "Leistungsumfang",
+        tileGallery: "Galerie",
+        tileContact: "Kontakt",
+        servicesTitle: "Leistungsumfang",
+        servicesText: "Wir bieten umfassende Dienstleistungen, einschließlich Inspektionen, Modernisierungen und Reparaturen von Industrieanlagen, einschließlich Austausch von Gleitstücken und Ketten in Förderanlagen.",
+        galleryTitle: "Galerie",
+        galleryText: "Sehen Sie ausgewählte Beispiele unserer Industrieprojekte.",
+        contactTitle: "Kontakt",
+        contactText: "KA-MAR Katarzyna Adamczyk-Dziuk, Lisieckiego 1, 41-506 Chorzów, Polen | Tel: +48 000 000 000 | Email: biuro@ka-mar.com.pl"
+      },
+      en: {
+        aboutTitle: "About Us",
+        aboutText: "KA-MAR specializes in the assembly, repair, and maintenance of industrial boilers, conveyor systems, and installations in power plants and waste incineration facilities. We operate across Poland and the entire European Union.",
+        tileServices: "Services",
+        tileGallery: "Gallery",
+        tileContact: "Contact Us",
+        servicesTitle: "Services",
+        servicesText: "We offer comprehensive services including inspections, upgrades, and repairs of industrial installations, such as replacing slides and chains in conveyors.",
+        galleryTitle: "Gallery",
+        galleryText: "View selected examples of our industrial projects.",
+        contactTitle: "Contact",
+        contactText: "KA-MAR Katarzyna Adamczyk-Dziuk, Lisieckiego 1, 41-506 Chorzów, Poland | Tel: +48 000 000 000 | Email: biuro@ka-mar.com.pl"
+      }
+    };
 
+    function setLang(lang) {
+      document.getElementById('about-title').innerText = content[lang].aboutTitle;
+      document.getElementById('about-text').innerText = content[lang].aboutText;
+      document.getElementById('tile-services').innerText = content[lang].tileServices;
+      document.getElementById('tile-gallery').innerText = content[lang].tileGallery;
+      document.getElementById('tile-contact').innerText = content[lang].tileContact;
+      document.getElementById('services-title').innerText = content[lang].servicesTitle;
+      document.getElementById('services-text').innerText = content[lang].servicesText;
+      document.getElementById('gallery-title').innerText = content[lang].galleryTitle;
+      document.getElementById('gallery-text').innerText = content[lang].galleryText;
+      document.getElementById('contact-title').innerText = content[lang].contactTitle;
+      document.getElementById('contact-text').innerText = content[lang].contactText;
+    }
+
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({behavior: 'smooth'});
+    }
+
+    setLang('pl');
+  </script>
 </body>
 </html>
