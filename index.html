@@ -82,17 +82,21 @@
         <small id="gallery-note"></small>
       </section>
       <!-- CONTACT -->
-      <section id="contact" role="tabpanel" aria-labelledby="t-contact" hidden>
-        <h2 id="contact-title"></h2>
-        <p id="contact-lead"></p>
-        <form id="contact-form" action="https://formspree.io/f/xdkdbrng" method="POST">
-          <input required name="name" placeholder="Imię i nazwisko / Name" />
-          <input required name="contact" placeholder="E‑mail lub telefon / Email or phone" />
-          <textarea required rows="4" name="message" placeholder="Wiadomość / Message"></textarea>
-          <button type="submit" id="contact-submit"></button>
-          <small id="contact-legal"></small>
-        </form>
-      </section>
+     <section id="contact" role="tabpanel" aria-labelledby="t-contact" hidden>
+  <h2 id="contact-title"></h2>
+  <p id="contact-lead"></p>
+
+  <form id="contact-form" action="https://formspree.io/f/xdkdbrng" method="POST">
+    <input required name="name" placeholder="Imię i nazwisko / Name" />
+    <input required name="contact" placeholder="E-mail lub telefon / Email or phone" />
+    <textarea required rows="4" name="message" placeholder="Wiadomość / Message"></textarea>
+    <button type="submit" id="contact-submit"></button>
+    <small id="contact-legal"></small>
+
+    <!-- miejsce na komunikaty po wysłaniu -->
+    <p id="form-status" aria-live="polite" style="margin-top:.75rem;display:none;"></p>
+  </form>
+</section>
     </div>
   </main>
 </div>
@@ -193,6 +197,56 @@ document.getElementById('lang-en').addEventListener('click',()=>{lang='en';local
 // init
 applyLang();
 switchTab('about');
+  // --- kontakt: AJAX + reset + komunikat ---
+(function () {
+  const form = document.getElementById('contact-form');
+  const statusEl = document.getElementById('form-status');
+  if (!form || !statusEl) return;
+
+  function showStatus(msg, ok = true) {
+    statusEl.textContent = msg;
+    statusEl.style.display = 'block';
+    statusEl.style.color = ok ? '#8bd86f' : '#ff6b6b';
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault(); // bez przekierowania
+    const btn = form.querySelector('button[type="submit"]');
+    if (btn) {
+      btn.disabled = true;
+      btn.dataset.orig = btn.textContent;
+      btn.textContent = 'Wysyłanie...';
+    }
+
+    try {
+      const data = new FormData(form);
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' } // blokuje redirect, dostajemy JSON
+      });
+
+      if (res.ok) {
+        form.reset(); // wyczyść pola
+        showStatus('Dziękujemy! Twoja wiadomość została wysłana.', true);
+      } else {
+        let msg = 'Wystąpił błąd. Spróbuj ponownie.';
+        try {
+          const j = await res.json();
+          if (j?.errors?.length) msg = j.errors.map(e => e.message).join(', ');
+        } catch {}
+        showStatus(msg, false);
+      }
+    } catch {
+      showStatus('Błąd połączenia. Spróbuj ponownie.', false);
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        btn.textContent = btn.dataset.orig || 'Wyślij';
+      }
+    }
+  });
+})();
 </script>
 </body>
 </html>
