@@ -153,7 +153,11 @@ const COPY = {
   }
 };
 
-let lang = localStorage.getItem('lang') || 'pl';
+let lang = localStorage.getItem('lang');
+if (!lang) {
+  lang = 'pl';
+  localStorage.setItem('lang', lang);
+}
 
 function applyLang(){
   const L=COPY[lang];
