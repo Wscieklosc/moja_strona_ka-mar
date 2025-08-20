@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 <!doctype html>
 
 <html lang="pl">
@@ -133,7 +132,9 @@
 
 <script>
 // --- Treść wielojęzyczna ---
-const COPY = {
+// Ensure 'COPY' is declared only once
+if (typeof COPY === 'undefined') {
+  const COPY = {
   pl:{
     tabs:{about:'O firmie', gallery:'Galeria', contact:'Kontakt'},
     about:{title:'O firmie',
@@ -181,11 +182,11 @@ const COPY = {
     gallery:{title:'Gallery', lead:'Selected projects (placeholders).', note:'Replace placeholders with images in /assets/*.jpg. Lightbox optional.'},
     contact:{title:'Contact', lead:'KA‑MAR Katarzyna Adamczyk‑Dziuk\nul. ks. bpa A. Lisieckiego 1\n41‑506 Chorzów, Poland\nTax ID (NIP): PL627‑258‑91‑68\nREGON: 522225781\nTel. +48 798 302 814\nbiuro@ka-mar.com.pl', submit:'Send', legal:'Form sent via Formspree — can be changed to any provider.'}
   }
-};
-
-let lang = localStorage.getItem('lang');
+  };
+}
+// Ensure 'lang' is declared only once
 if (!lang) {
-  lang = 'pl';
+  var lang = 'pl';
   localStorage.setItem('lang', lang);
 }
 
@@ -406,60 +407,14 @@ switchTab('about');
 
 <script>
 // --- Treść wielojęzyczna ---
-const COPY = {
-  pl:{
-    tabs:{about:'O firmie', gallery:'Galeria', contact:'Kontakt'},
-    about:{title:'O firmie',
-      lead:'Specjalizujemy się w montażu i remontach kotłów przemysłowych, taśmociągów i rurociągów. Pracujemy na kontraktach w UE (elektrownie, spalarnie).',
-      points:[
-        'Rewizje, przeglądy i modernizacje linii transportu paliw/odpadów',
-        'Wymiany ślizgów i łańcuchów, serwis mechaniczny',
-        'Fakturowanie w EUR, rozliczenia reverse charge',
-        'Własne ekipy i nadzór, bezpieczeństwo i terminowość'
-      ]
-    },
-    gallery:{title:'Galeria', lead:'Wybrane realizacje (przykładowe miejsca na zdjęcia).', note:'Podmień prostokąty na zdjęcia w /assets/*.jpg (możemy dodać lightbox).'},
-    contact:{
-      title:'Kontakt',
-      lead:'KA‑MAR Katarzyna Adamczyk‑Dziuk\nul. ks. bpa A. Lisieckiego 1\n41‑506 Chorzów\nNIP: 627‑258‑91‑68\nREGON: 522225781\nTel. +48 798 302 814\nbiuro@ka-mar.com.pl',
-      submit:'Wyślij',
-      legal:'Formularz wysyłany przez Formspree — w razie potrzeby podmienimy na inną usługę.'
-    }
-  },
-  de:{
-    tabs:{about:'Über uns', gallery:'Galerie', contact:'Kontakt'},
-    about:{title:'Über uns',
-      lead:'Wir sind spezialisiert auf Montage und Instandsetzung von Industriekesseln, Förderanlagen und Rohrleitungen. Projekte in der EU (Kraftwerke, Müllverbrennungen).',
-      points:[
-        'Inspektionen, Revisionen und Modernisierungen von Förderlinien',
-        'Austausch von Gleitstücken und Ketten, mechanischer Service',
-        'Rechnungsstellung in EUR, Reverse‑Charge‑Abrechnung',
-        'Eigene Teams und Aufsicht, Sicherheit und Termintreue'
-      ]
-    },
-    gallery:{title:'Galerie', lead:'Ausgewählte Projekte (Platzhalter für Fotos).', note:'Ersetzen Sie die Platzhalter durch Bilder in /assets/*.jpg. Lightbox möglich.'},
-    contact:{title:'Kontakt', lead:'KA‑MAR Katarzyna Adamczyk‑Dziuk • Lisieckiego 1, 41‑506 Chorzów | USt‑IdNr./NIP: PL627‑258‑91‑68 • REGON: 522225781 | Tel. +48 798 302 814 | biuro@ka-mar.com.pl', submit:'Senden', legal:'Das Formular wird über Formspree versendet — auf Wunsch ändern wir den Provider.'}
-  },
-  en:{
-    tabs:{about:'About', gallery:'Gallery', contact:'Contact'},
-    about:{title:'About',
-      lead:'We specialize in assembly and overhaul of industrial boilers, conveyors and pipelines. EU contracts (power plants, waste‑to‑energy).',
-      points:[
-        'Inspections, revisions and upgrades of conveyor lines',
-        'Replacement of slides and chains, mechanical service',
-        'Invoicing in EUR, reverse‑charge scheme',
-        'Own crews and supervision, safety and on‑time delivery'
-      ]
-    },
-    gallery:{title:'Gallery', lead:'Selected projects (placeholders).', note:'Replace placeholders with images in /assets/*.jpg. Lightbox optional.'},
-    contact:{title:'Contact', lead:'KA‑MAR Katarzyna Adamczyk‑Dziuk • Lisieckiego 1, 41‑506 Chorzów, Poland | Tax ID (NIP): PL627‑258‑91‑68 • REGON: 522225781 | Tel. +48 798 302 814 | biuro@ka-mar.com.pl', submit:'Send', legal:'Form sent via Formspree — can be changed to any provider.'}
-  }
-};
+/* Removed duplicate declaration of COPY */
 
-let lang = localStorage.getItem('lang');
-if (!lang) {
-  lang = 'pl';
-  localStorage.setItem('lang', lang);
+if (typeof lang === 'undefined') {
+  var lang = localStorage.getItem('lang');
+  if (!lang) {
+    lang = 'pl';
+    localStorage.setItem('lang', lang);
+  }
 }
 
 function applyLang(){
@@ -560,7 +515,8 @@ switchTab('about');
   });
 })();
 </script>
-</body>
+// Remove duplicate declaration of 'COPY'
+>>>>>>> 1dad84ca7ac35ef9a1080463bd3606381ed6b9f5
 </html>
 >>>>>>> 1dad84ca7ac35ef9a1080463bd3606381ed6b9f5
 =======
@@ -716,7 +672,7 @@ const COPY = {
     },
     gallery:{title:'Gallery', lead:'Selected projects (placeholders).', note:'Replace placeholders with images in /assets/*.jpg. Lightbox optional.'},
     contact:{title:'Contact', lead:'KA‑MAR Katarzyna Adamczyk‑Dziuk • Lisieckiego 1, 41‑506 Chorzów, Poland | Tax ID (NIP): PL627‑258‑91‑68 • REGON: 522225781 | Tel. +48 798 302 814 | biuro@ka-mar.com.pl', submit:'Send', legal:'Form sent via Formspree — can be changed to any provider.'}
-  }
+  },
 };
 
 let lang = localStorage.getItem('lang');
