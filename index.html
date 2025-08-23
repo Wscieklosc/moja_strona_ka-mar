@@ -5,7 +5,32 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>KA‑MAR Katarzyna Adamczyk-Dziuk• O firmie</title>
-  <meta name="description" content="KA‑MAR Katarzyna Adamczyk‑Dziuk — przemysłowe montaże i remonty: kotły, taśmociągi, rurociągi. Kontrakty UE. Kontakt i galeria." />
+      <meta name="description" content="KA‑MAR Katarzyna Adamczyk‑Dziuk — przemysłowe montaże i remonty: kotły, taśmociągi, rurociągi. Kontrakty UE. Kontakt i galeria." />
+      <!-- Open Graph metadata for social previews -->
+      <meta property="og:title" content="KA‑MAR — montaże i remonty przemysłowe">
+      <meta property="og:description" content="Kotły, taśmociągi, rurociągi. Kontrakty UE.">
+      <meta property="og:url" content="https://www.ka-mar.com.pl/">
+      <meta property="og:type" content="website">
+      <meta property="og:image" content="https://www.ka-mar.com.pl/assets/og.jpg">
+      <!-- Structured data describing the company -->
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "KA‑MAR Katarzyna Adamczyk‑Dziuk",
+        "image": "https://www.ka-mar.com.pl/assets/og.jpg",
+        "email": "biuro@ka-mar.com.pl",
+        "telephone": "+48 798 302 814",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "ul. ks. bpa A. Lisieckiego 1",
+          "addressLocality": "Chorzów",
+          "postalCode": "41-506",
+          "addressCountry": "PL"
+        },
+        "url": "https://www.ka-mar.com.pl"
+      }
+      </script>
   <style>
     :root{
       --bg:#0b0f14; --panel:#0f1520; --ink:#e7edf7; --muted:#a7b1c2; --line:#1d2431; --brand:#46b2e0; --accent:#8bd86f;
@@ -41,10 +66,20 @@
     button[type=submit]{justify-self:start;padding:10px 14px;border-radius:12px;border:0;font-weight:700;cursor:pointer;background:linear-gradient(135deg,var(--brand),#2b74f1);color:#061118}
     small{color:var(--muted)}
     @media (max-width:900px){.gallery{grid-template-columns:repeat(2,1fr)}}
+
+        /* Hide content visually but keep accessible to screen readers */
+        .visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);}
+
+        /* Allow scrolling on small devices and ensure panels fill the viewport */
+        @media (max-width:700px){
+          body{overflow:auto}
+          main{height:auto;min-height:100svh}
+        }
   </style>
 </head>
 <body>
-<div class="wrap">
+    <h1 class="visually-hidden">KA‑MAR — montaże i remonty przemysłowe</h1>
+    <div class="wrap">
   <header>
     <div class="bar" role="navigation" aria-label="Główne">
       <div class="logo" aria-hidden="true"></div>
@@ -88,7 +123,7 @@
 
   <form id="contact-form" action="https://formspree.io/f/xdkdbrng" method="POST">
     <input required name="name" placeholder="Imię i nazwisko / Name" />
-    <input required name="contact" placeholder="E-mail lub telefon / Email or phone" />
+    <input required name="contact" type="email" placeholder="E‑mail / Email" />
     <textarea required rows="4" name="message" placeholder="Wiadomość / Message"></textarea>
     <button type="submit" id="contact-submit"></button>
     <small id="contact-legal"></small>
@@ -161,6 +196,8 @@ if (!lang) {
 
 function applyLang(){
   const L=COPY[lang];
+  // update the <html> lang attribute on each language change
+  document.documentElement.setAttribute('lang', lang);
   document.getElementById('t-about').textContent=L.tabs.about;
   document.getElementById('t-gallery').textContent=L.tabs.gallery;
   document.getElementById('t-contact').textContent=L.tabs.contact;
@@ -172,7 +209,12 @@ function applyLang(){
   document.getElementById('gallery-lead').textContent=L.gallery.lead;
   document.getElementById('gallery-note').textContent=L.gallery.note;
   document.getElementById('contact-title').textContent=L.contact.title;
-  document.getElementById('contact-lead').textContent=L.contact.lead;
+  // Build rich HTML for the contact lead: replace newlines with <br> and phone/email with clickable links
+  const leadHtml = L.contact.lead
+    .replace(/\n/g,'<br>')
+    .replace('+48 798 302 814','<a href="tel:+48798302814">+48 798 302 814</a>')
+    .replace('biuro@ka-mar.com.pl','<a href="mailto:biuro@ka-mar.com.pl">biuro@ka-mar.com.pl</a>');
+  document.getElementById('contact-lead').innerHTML = leadHtml;
   document.getElementById('contact-submit').textContent=L.contact.submit;
   document.getElementById('contact-legal').textContent=L.contact.legal;
   // lang buttons state
@@ -189,6 +231,18 @@ function switchTab(id){
     el.hidden=!active;
     btn.setAttribute('aria-selected', active);
   });
+
+  // Update document title and URL hash to reflect the active tab
+  try {
+    const titleMap = COPY[lang]?.tabs || {};
+    const t = titleMap[id] || id;
+    document.title = `KA‑MAR • ${t}`;
+    if (history && history.replaceState) {
+      history.replaceState(null, '', '#' + id);
+    }
+  } catch (e) {
+    // ignore errors silently
+  }
 }
 
 document.getElementById('t-about').addEventListener('click',()=>switchTab('about'));
