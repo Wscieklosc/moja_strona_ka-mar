@@ -49,16 +49,16 @@
 <body>
 <div class="wrap">
   <header>
-    <div class="bar" role="navigation" aria-label="Główne">
+    <div class="bar" role="navigation" aria-label="GĹ‚Ăłwne">
       <div class="logo" aria-hidden="true"></div>
-      <div class="title">KA-MAR Katarzyna Adamczyk-Dziuk</div>
+      <div class="title">KAâ€‘MAR Katarzyna Adamczyk-Dziuk</div>
       <div class="spacer"></div>
       <div class="tabs" role="tablist" aria-label="Sekcje">
         <button class="tab" role="tab" id="t-about" aria-controls="about" aria-selected="true"></button>
         <button class="tab" role="tab" id="t-gallery" aria-controls="gallery" aria-selected="false"></button>
         <button class="tab" role="tab" id="t-contact" aria-controls="contact" aria-selected="false"></button>
       </div>
-      <div class="langs" role="group" aria-label="Języki">
+      <div class="langs" role="group" aria-label="JÄ™zyki">
         <button class="lang" id="lang-pl" aria-pressed="true">PL</button>
         <button class="lang" id="lang-de" aria-pressed="false">DE</button>
         <button class="lang" id="lang-en" aria-pressed="false">EN</button>
@@ -89,7 +89,7 @@
   <h2 id="contact-title"></h2>
   <p id="contact-lead"></p>
 
-  <form id="contact-form" action="https://formspree.io/f/xdkdbrng" method="POST">
+  <form id="contact-form" action="https://formspree.io/f/your-endpoint" method="POST">
     <input required name="name" placeholder="ImiÄ™ i nazwisko / Name" />
     <input required name="contact" placeholder="E-mail lub telefon / Email or phone" />
     <textarea required rows="4" name="message" placeholder="WiadomoĹ›Ä‡ / Message"></textarea>
@@ -121,10 +121,97 @@ const COPY = {
     gallery:{title:'Galeria', lead:'Wybrane realizacje (przykĹ‚adowe miejsca na zdjÄ™cia).', note:'PodmieĹ„ prostokÄ…ty na zdjÄ™cia w /assets/*.jpg (moĹĽemy dodaÄ‡ lightbox).'},
     contact:{
       title:'Kontakt',
-      lead:'KA-MAR Katarzyna Adamczykâ€‘Dziuk\nul. ks. bpa A. Lisieckiego 1\n41â€‘506 ChorzĂłw\nNIP: 627â€‘258â€‘91â€‘68\nREGON: 522225781\nTel. <a href="tel:<a href="tel:+48798302814">+48 798 302 814</a></a><br> and make phone/email clickable
+      lead:'KAâ€‘MAR Katarzyna Adamczykâ€‘Dziuk\nul. ks. bpa A. Lisieckiego 1\n41â€‘506 ChorzĂłw\nNIP: 627â€‘258â€‘91â€‘68\nREGON: 522225781\nTel. +48 798 302 814\nbiuro@ka-mar.com.pl',
+      submit:'WyĹ›lij',
+      legal:'Formularz wysyĹ‚any przez Formspree â€” w razie potrzeby podmienimy na innÄ… usĹ‚ugÄ™.',
+      namePlaceholder:'ImiÄ™ i nazwisko',
+      contactPlaceholder:'Eâ€‘mail',
+      messagePlaceholder:'WiadomoĹ›Ä‡',
+      sending:'WysyĹ‚anie...',
+      success:'DziÄ™kujemy! Twoja wiadomoĹ›Ä‡ zostaĹ‚a wysĹ‚ana.',
+      error:'WystÄ…piĹ‚ bĹ‚Ä…d. SprĂłbuj ponownie.',
+      connectionError:'BĹ‚Ä…d poĹ‚Ä…czenia. SprĂłbuj ponownie.'
+    }
+  },
+  de:{
+    tabs:{about:'Ăśber uns', gallery:'Galerie', contact:'Kontakt'},
+    about:{title:'Ăśber uns',
+      lead:'Wir sind spezialisiert auf Montage und Instandsetzung von Industriekesseln, FĂ¶rderanlagen und Rohrleitungen. Projekte in der EU (Kraftwerke, MĂĽllverbrennungen).',
+      points:[
+        'Inspektionen, Revisionen und Modernisierungen von FĂ¶rderlinien',
+        'Austausch von GleitstĂĽcken und Ketten, mechanischer Service',
+        'Rechnungsstellung in EUR, Reverseâ€‘Chargeâ€‘Abrechnung',
+        'Eigene Teams und Aufsicht, Sicherheit und Termintreue'
+      ]
+    },
+    gallery:{title:'Galerie', lead:'AusgewĂ¤hlte Projekte (Platzhalter fĂĽr Fotos).', note:'Ersetzen Sie die Platzhalter durch Bilder in /assets/*.jpg. Lightbox mĂ¶glich.'},
+    contact:{
+      title:'Kontakt',
+      lead:'KAâ€‘MAR Katarzyna Adamczykâ€‘Dziuk â€˘ Lisieckiego 1, 41â€‘506 ChorzĂłw | UStâ€‘IdNr./NIP: PL627â€‘258â€‘91â€‘68 â€˘ REGON: 522225781 | Tel. +48 798 302 814 | biuro@ka-mar.com.pl',
+      submit:'Senden',
+      legal:'Das Formular wird ĂĽber Formspree versendet â€” auf Wunsch Ă¤ndern wir den Provider.',
+      namePlaceholder:'Name',
+      contactPlaceholder:'Eâ€‘Mail',
+      messagePlaceholder:'Nachricht',
+      sending:'Senden...',
+      success:'Vielen Dank! Ihre Nachricht wurde gesendet.',
+      error:'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.',
+      connectionError:'Verbindungsfehler. Bitte versuchen Sie es erneut.'
+    }
+  },
+  en:{
+    tabs:{about:'About', gallery:'Gallery', contact:'Contact'},
+    about:{title:'About',
+      lead:'We specialize in assembly and overhaul of industrial boilers, conveyors and pipelines. EU contracts (power plants, wasteâ€‘toâ€‘energy).',
+      points:[
+        'Inspections, revisions and upgrades of conveyor lines',
+        'Replacement of slides and chains, mechanical service',
+        'Invoicing in EUR, reverseâ€‘charge scheme',
+        'Own crews and supervision, safety and onâ€‘time delivery'
+      ]
+    },
+    gallery:{title:'Gallery', lead:'Selected projects (placeholders).', note:'Replace placeholders with images in /assets/*.jpg. Lightbox optional.'},
+    contact:{
+      title:'Contact',
+      lead:'KAâ€‘MAR Katarzyna Adamczykâ€‘Dziuk â€˘ Lisieckiego 1, 41â€‘506 ChorzĂłw, Poland | Tax ID (NIP): PL627â€‘258â€‘91â€‘68 â€˘ REGON: 522225781 | Tel. +48 798 302 814 | biuro@ka-mar.com.pl',
+      submit:'Send',
+      legal:'Form sent via Formspree â€” can be changed to any provider.',
+      namePlaceholder:'Name',
+      contactPlaceholder:'E-mail',
+      messagePlaceholder:'Message',
+      sending:'Sending...',
+      success:'Thank you! Your message has been sent.',
+      error:'An error occurred. Please try again.',
+      connectionError:'Connection error. Please try again.'
+    }
+  }
+};
+
+let lang = localStorage.getItem('lang');
+if (!lang) {
+  lang = 'pl';
+  localStorage.setItem('lang', lang);
+}
+
+function applyLang(){
+  const L=COPY[lang];
+  // update html lang attribute on each language change
+  document.documentElement.setAttribute('lang', lang);
+  document.getElementById('t-about').textContent=L.tabs.about;
+  document.getElementById('t-gallery').textContent=L.tabs.gallery;
+  document.getElementById('t-contact').textContent=L.tabs.contact;
+  document.getElementById('about-title').textContent=L.about.title;
+  document.getElementById('about-lead').textContent=L.about.lead;
+  const ul=document.getElementById('about-points'); ul.innerHTML='';
+  L.about.points.forEach(x=>{const li=document.createElement('li'); li.textContent=x; ul.appendChild(li)});
+  document.getElementById('gallery-title').textContent=L.gallery.title;
+  document.getElementById('gallery-lead').textContent=L.gallery.lead;
+  document.getElementById('gallery-note').textContent=L.gallery.note;
+  document.getElementById('contact-title').textContent=L.contact.title;
+  // Build rich HTML for contact lead: convert newlines to <br> and make phone/email clickable
   const leadHtml = L.contact.lead
     .replace(/\n/g,'<br>')
-    .replace('<a href="tel:<a href="tel:+48798302814">+48 798 302 814</a></a><a href="tel:<a href="tel:<a href="tel:+48798302814">+48 798 302 814</a></a></a>')
+    .replace('+48 798 302 814','<a href="tel:+48798302814">+48Â 798Â 302Â 814</a>')
     .replace('biuro@ka-mar.com.pl','<a href="mailto:biuro@ka-mar.com.pl">biuro@ka-mar.com.pl</a>');
   document.getElementById('contact-lead').innerHTML = leadHtml;
   // Update placeholders for form fields
@@ -187,7 +274,7 @@ switchTab('about');
       btn.dataset.orig = btn.textContent;
       // Localize the sending label if available
       const msgs = (COPY[lang] && COPY[lang].contact) || {};
-      btn.textContent = msgs.sending || 'Wysyłanie...';
+      btn.textContent = msgs.sending || 'WysyĹ‚anie...';
     }
 
     try {
@@ -202,11 +289,11 @@ switchTab('about');
         form.reset(); // wyczyĹ›Ä‡ pola
         {
           const msgs = (COPY[lang] && COPY[lang].contact) || {};
-          showStatus(msgs.success || "Dziękujemy! Twoja wiadomość została wysłana.");
+          showStatus(msgs.success || 'DziÄ™kujemy! Twoja wiadomoĹ›Ä‡ zostaĹ‚a wysĹ‚ana.', true);
         }
       } else {
         const msgs = (COPY[lang] && COPY[lang].contact) || {};
-        let msg = msgs.error || "Wystąpił błąd. Spróbuj ponownie.";
+        let msg = msgs.error || 'WystÄ…piĹ‚ bĹ‚Ä…d. SprĂłbuj ponownie.';
         try {
           const j = await res.json();
           if (j?.errors?.length) msg = j.errors.map(e => e.message).join(', ');
@@ -216,13 +303,13 @@ switchTab('about');
     } catch {
       {
         const msgs = (COPY[lang] && COPY[lang].contact) || {};
-        showStatus(msgs.connectionError || "Błąd połączenia. Spróbuj ponownie.", false);
+        showStatus(msgs.connectionError || 'BĹ‚Ä…d poĹ‚Ä…czenia. SprĂłbuj ponownie.', false);
       }
     } finally {
         if (btn) {
         btn.disabled = false;
         const msgs = (COPY[lang] && COPY[lang].contact) || {};
-        btn.textContent = btn.dataset.orig || msgs.submit || 'Wyślij';
+        btn.textContent = btn.dataset.orig || msgs.submit || 'WyĹ›lij';
       }
     }
   });
@@ -230,10 +317,5 @@ switchTab('about');
 </script>
 </body>
 </html>
-
-
-
-
-
 
 
